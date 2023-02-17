@@ -1,0 +1,52 @@
+{
+	"name": "@covbot/vite-plugin-github-block",
+	"description": "",
+	"version": "1.0.0",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"author": "",
+	"license": "MIT",
+	"keywords": [],
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs",
+			"types": "./dist/index.d.ts"
+		},
+		"./client": {
+			"import": "./dist/client.mjs",
+			"require": "./dist/client.cjs",
+			"types": "./dist/client.d.ts"
+		}
+	},
+	"scripts": {
+		"build": "rimraf ./dist && pnpm build:no-cleanup",
+		"build:no-cleanup": "pnpm build:ts && pnpm build:js",
+		"build:js": "tsup",
+		"build:ts": "dts-bundle-generator --config ./.config/dts-config.cjs",
+		"dev": "pnpm build:no-cleanup && pnpm playground:dev",
+		"format": "pnpm format:manifest && pnpm format:code",
+		"format:code": "prettier --write **/*.{ts,tsx,cjs,js,jsx,json,md,yaml}",
+		"format:manifest": "syncpack format",
+		"playground:dev": "pnpm --filter playground dev",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"parse-git-config": "^3.0.0"
+	},
+	"devDependencies": {
+		"@covbot/configs": "github:covbot/configs",
+		"@sirse-dev/eslint-config": "^2.1.0",
+		"@types/node": "^18.13.0",
+		"@types/parse-git-config": "^3.0.1",
+		"dts-bundle-generator": "^7.2.0",
+		"eslint": "^8.34.0",
+		"prettier": "^2.8.4",
+		"rimraf": "^4.1.2",
+		"syncpack": "^9.0.2",
+		"tsup": "^6.6.3",
+		"typescript": "^4.9.5",
+		"vite": "^4.1.0"
+	}
+}

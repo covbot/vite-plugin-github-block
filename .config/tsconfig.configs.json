@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"composite": true,
+		"emitDeclarationOnly": true,
+		"allowJs": true,
+		"moduleResolution": "node16",
+		"module": "node16",
+		"rootDir": ".."
+	},
+	"include": [
+		"../**/*.config.js",
+		"../**/*.config.cjs",
+		"../**/*.config.mjs",
+		"../**/*.config.ts",
+		"./dts-config.cjs"
+	]
+}
