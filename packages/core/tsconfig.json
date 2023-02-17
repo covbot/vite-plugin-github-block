@@ -3,7 +3,6 @@
 		"composite": true,
 		"target": "ES2022",
 		"module": "ES2022",
-		"rootDir": "..",
 		"moduleResolution": "node",
 		"sourceMap": true,
 		"emitDeclarationOnly": true,
@@ -11,5 +10,5 @@
 		"declaration": true,
 		"jsx": "react-jsx"
 	},
-	"include": ["../src/**/*.ts", "../src/**/*.tsx"]
+	"include": ["src/**/*.ts", "src/**/*.tsx"]
 }

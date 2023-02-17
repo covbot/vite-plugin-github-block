@@ -26,7 +26,7 @@ const config = {
 		},
 	],
 	compilationOptions: {
-		preferredConfigPath: file('.config/tsconfig.node.json'),
+		preferredConfigPath: file('tsconfig.json'),
 	},
 };
 

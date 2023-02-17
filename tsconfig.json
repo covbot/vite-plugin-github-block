@@ -4,7 +4,10 @@
 			"path": "./.config/tsconfig.configs.json"
 		},
 		{
-			"path": "./.config/tsconfig.node.json"
+			"path": "./packages/core/tsconfig.json"
+		},
+		{
+			"path": "./packages/playground/tsconfig.json"
 		}
 	]
 }

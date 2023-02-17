@@ -1,77 +1,25 @@
 {
-	"name": "@covbot/vite-plugin-github-block",
+	"name": "root",
 	"description": "",
 	"version": "1.0.0",
-	"main": "./dist/index.cjs",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
+	"main": "index.js",
 	"author": "",
-	"license": "MIT",
-	"keywords": [
-		"vite-plugin"
-	],
-	"publishConfig": {
-		"access": "public",
-		"directory": "prepared-package"
-	},
-	"exports": {
-		".": {
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.cjs",
-			"types": "./dist/index.d.ts"
-		},
-		"./client": {
-			"import": "./dist/client.mjs",
-			"require": "./dist/client.cjs",
-			"types": "./dist/client.d.ts"
-		},
-		"./react": {
-			"import": "./dist/react.mjs",
-			"require": "./dist/react.cjs",
-			"types": "./dist/react.d.ts"
-		}
-	},
+	"license": "ISC",
+	"keywords": [],
+	"packageManager": "pnpm@7.26.3",
 	"scripts": {
-		"build": "rimraf ./dist && pnpm build:no-cleanup",
-		"build:js": "tsup",
-		"build:no-cleanup": "pnpm build:ts && pnpm build:js",
-		"build:ts": "dts-bundle-generator --config ./.config/dts-config.cjs",
-		"dev": "pnpm build:no-cleanup && pnpm playground:dev",
 		"format": "pnpm format:manifest && pnpm format:code",
 		"format:code": "prettier --write **/*.{ts,tsx,cjs,js,jsx,json,md,yaml}",
 		"format:manifest": "syncpack format",
-		"playground:dev": "pnpm --filter playground dev",
-		"postpublish": "rimraf ./prepared-package",
-		"prepublishOnly": "rimraf ./prepared-package && clean-publish",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"dependencies": {
-		"@githubnext/blocks": "^2.3.5",
-		"@githubnext/blocks-runtime": "^1.0.3",
-		"parse-git-config": "^3.0.0"
+		"dev": "pnpm --filter @covbot/vite-plugin-github-block build:no-cleanup && pnpm --filter playground dev"
 	},
 	"devDependencies": {
+		"@changesets/cli": "^2.26.0",
 		"@covbot/configs": "github:covbot/configs",
 		"@sirse-dev/eslint-config": "^2.1.0",
-		"@sirse-dev/safe-context": "^0.3.0",
-		"@types/node": "^18.13.0",
-		"@types/parse-git-config": "^3.0.1",
-		"@types/react": "^18.0.27",
-		"@types/react-dom": "^18.0.10",
 		"clean-publish": "^4.1.1",
-		"dts-bundle-generator": "^7.2.0",
 		"eslint": "^8.34.0",
 		"prettier": "^2.8.4",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"rimraf": "^4.1.2",
-		"syncpack": "^9.0.2",
-		"tsup": "^6.6.3",
-		"typescript": "^4.9.5",
-		"vite": "^4.1.0"
-	},
-	"peerDependencies": {
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"syncpack": "^9.3.2"
 	}
 }

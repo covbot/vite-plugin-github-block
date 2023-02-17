@@ -12,7 +12,7 @@
 		"../**/*.config.cjs",
 		"../**/*.config.mjs",
 		"../**/*.config.ts",
-		"./dts-config.cjs",
+		"../**/dts-config.cjs",
 		"../.clean-publish.js"
 	]
 }
