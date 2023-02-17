@@ -13,6 +13,7 @@ importers:
       '@types/parse-git-config': ^3.0.1
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
+      clean-publish: ^4.1.1
       dts-bundle-generator: ^7.2.0
       eslint: ^8.34.0
       parse-git-config: ^3.0.0
@@ -29,13 +30,14 @@ importers:
       '@githubnext/blocks-runtime': 1.0.3_4bewfcp2iebiwuold25d6rgcsy
       parse-git-config: 3.0.0
     devDependencies:
-      '@covbot/configs': github.com/covbot/configs/43855539f0fcf1baadd504d1132d28ce492b5eaa
+      '@covbot/configs': github.com/covbot/configs/db2cea2adc2ab877fcccbe8bad910600a72c7edf
       '@sirse-dev/eslint-config': 2.1.0_ztlnmuobvwn63gpuifwwrjpt4i
       '@sirse-dev/safe-context': 0.3.0_react@18.2.0
       '@types/node': 18.13.0
       '@types/parse-git-config': 3.0.1
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.11
+      clean-publish: 4.1.1
       dts-bundle-generator: 7.2.0
       eslint: 8.34.0
       prettier: 2.8.4
@@ -46,6 +48,7 @@ importers:
       tsup: 6.6.3_typescript@4.9.5
       typescript: 4.9.5
       vite: 4.1.1_@types+node@18.13.0
+    publishDirectory: prepared-package
 
   playground:
     specifiers:
@@ -1670,6 +1673,17 @@ packages:
   /classnames/2.3.2:
     resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: false
+
+  /clean-publish/4.1.1:
+    resolution: {integrity: sha512-111O3MNk6x/dAbHZwG+iRZ4AYwpKqc7Qp1MarFhE1KtQIp9m9TkDuI+hedn7qgeFnLgSw3ItgEnHNwvhc7SmGg==}
+    engines: {node: '>= 16.0.0'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
+      fast-glob: 3.2.12
+      lilconfig: 2.0.6
+      micromatch: 4.0.5
+    dev: true
 
   /clean-regexp/1.0.0:
     resolution: {integrity: sha512-GfisEZEJvzKrmGWkvfhgzcz/BllN1USeqD2V6tg14OAOgaCD2Z/PUEuxnAZ/nPvmaHRG7a8y77p1T/IRQ4D1Hw==}
@@ -4761,8 +4775,8 @@ packages:
     resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
     dev: true
 
-  github.com/covbot/configs/43855539f0fcf1baadd504d1132d28ce492b5eaa:
-    resolution: {tarball: https://codeload.github.com/covbot/configs/tar.gz/43855539f0fcf1baadd504d1132d28ce492b5eaa}
+  github.com/covbot/configs/db2cea2adc2ab877fcccbe8bad910600a72c7edf:
+    resolution: {tarball: https://codeload.github.com/covbot/configs/tar.gz/db2cea2adc2ab877fcccbe8bad910600a72c7edf}
     name: '@covbot/configs'
     version: 1.0.0
     dependencies:

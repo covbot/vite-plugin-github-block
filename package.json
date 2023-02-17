@@ -8,6 +8,10 @@
 	"author": "",
 	"license": "MIT",
 	"keywords": [],
+	"publishConfig": {
+		"access": "public",
+		"directory": "prepared-package"
+	},
 	"exports": {
 		".": {
 			"import": "./dist/index.mjs",
@@ -35,7 +39,9 @@
 		"format:code": "prettier --write **/*.{ts,tsx,cjs,js,jsx,json,md,yaml}",
 		"format:manifest": "syncpack format",
 		"playground:dev": "pnpm --filter playground dev",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepublishOnly": "rimraf ./prepared-package && clean-publish",
+		"postpublish": "rimraf ./prepared-package"
 	},
 	"dependencies": {
 		"@githubnext/blocks": "^2.3.5",
@@ -50,6 +56,7 @@
 		"@types/parse-git-config": "^3.0.1",
 		"@types/react": "^18.0.27",
 		"@types/react-dom": "^18.0.10",
+		"clean-publish": "^4.1.1",
 		"dts-bundle-generator": "^7.2.0",
 		"eslint": "^8.34.0",
 		"prettier": "^2.8.4",
