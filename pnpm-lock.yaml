@@ -58,7 +58,7 @@ importers:
 
   packages/playground:
     specifiers:
-      '@covbot/vite-plugin-github-block': workspace:^1.0.0
+      '@covbot/vite-plugin-github-block': workspace:^
       '@githubnext/blocks': ^2.3.5
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
@@ -1624,7 +1624,7 @@ packages:
     peerDependencies:
       vite: ^3.0.0 || ^4.0.0
     dependencies:
-      vite: 4.1.2
+      vite: 4.1.2_@types+node@18.13.0
     dev: false
 
   /@vitejs/plugin-react/3.1.0_vite@4.1.2:
