@@ -20,6 +20,10 @@ const config = {
 			filePath: file('src/client/index.ts'),
 			outFile: file('dist/client.d.ts'),
 		},
+		{
+			filePath: file('src/react/index.ts'),
+			outFile: file('dist/react.d.ts'),
+		},
 	],
 	compilationOptions: {
 		preferredConfigPath: file('.config/tsconfig.node.json'),

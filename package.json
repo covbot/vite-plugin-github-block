@@ -18,6 +18,11 @@
 			"import": "./dist/client.mjs",
 			"require": "./dist/client.cjs",
 			"types": "./dist/client.d.ts"
+		},
+		"./react": {
+			"import": "./dist/react.mjs",
+			"require": "./dist/react.cjs",
+			"types": "./dist/react.d.ts"
 		}
 	},
 	"scripts": {
@@ -33,20 +38,31 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
+		"@githubnext/blocks": "^2.3.5",
+		"@githubnext/blocks-runtime": "^1.0.3",
 		"parse-git-config": "^3.0.0"
 	},
 	"devDependencies": {
 		"@covbot/configs": "github:covbot/configs",
 		"@sirse-dev/eslint-config": "^2.1.0",
+		"@sirse-dev/safe-context": "^0.3.0",
 		"@types/node": "^18.13.0",
 		"@types/parse-git-config": "^3.0.1",
+		"@types/react": "^18.0.27",
+		"@types/react-dom": "^18.0.10",
 		"dts-bundle-generator": "^7.2.0",
 		"eslint": "^8.34.0",
 		"prettier": "^2.8.4",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
 		"rimraf": "^4.1.2",
 		"syncpack": "^9.0.2",
 		"tsup": "^6.6.3",
 		"typescript": "^4.9.5",
 		"vite": "^4.1.0"
+	},
+	"peerDependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
 	}
 }

@@ -1,6 +1,8 @@
 import { Plugin } from 'vite';
 import parseGitConfig from 'parse-git-config';
 import type { ServerResponse } from 'node:http';
+import { dirname, resolve } from 'node:path';
+import { access, constants as fsConstants } from 'node:fs/promises';
 
 const sendJson = (res: ServerResponse, json: unknown) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
@@ -8,7 +10,9 @@ const sendJson = (res: ServerResponse, json: unknown) => {
 	res.end(JSON.stringify(json));
 };
 
-const getEntrypointHtml = (rootDir: string) => `
+const VIRTUAL_ENTRYPOINT = '/virtual:entry';
+
+const entrypointHtml = `
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,11 +22,34 @@ const getEntrypointHtml = (rootDir: string) => `
     <meta name="description" content="">
   </head>
   <body>
-    <div id="app">Hello, world!</div>
-    <script type="module" src="/@fs/${rootDir}/blocks.entry.ts"></script>
+    <div id="root"></div>
+    <script type="module" src="${VIRTUAL_ENTRYPOINT}"></script>
   </body>
 </html>
-`;
+`.trim();
+
+const getJsEntrypoint = (rootDirectory: string) =>
+	`
+import blockEntrypoint from '/@fs/${rootDirectory}/blocks.entry.ts';
+import { initEntrypoint } from '@covbot/vite-plugin-github-block/client';
+
+const rootElement = document.getElementById('root');
+
+initEntrypoint(blockEntrypoint, rootElement);
+`.trim();
+
+const findGitFolder = async (rootDirectory: string) => {
+	let current = rootDirectory;
+	while (current !== dirname(current)) {
+		current = dirname(current);
+		try {
+			await access(resolve(current, '.git'), fsConstants.R_OK);
+			return current;
+		} catch {}
+	}
+
+	return rootDirectory;
+};
 
 const cleanUrl = (url: string): string => url.replace(/#.*$/s, '').replace(/\?.*$/s, '');
 
@@ -31,6 +58,16 @@ export default function pluginGithubBlock(): Plugin {
 
 	const plugin: Plugin = {
 		name: '@covbot/vite-plugin-github-block',
+		resolveId(id) {
+			if (id === VIRTUAL_ENTRYPOINT) {
+				return '\0' + VIRTUAL_ENTRYPOINT;
+			}
+		},
+		load(id) {
+			if (id === '\0' + VIRTUAL_ENTRYPOINT) {
+				return getJsEntrypoint(rootDirectory);
+			}
+		},
 		configResolved(config) {
 			rootDirectory = config.root;
 		},
@@ -41,7 +78,8 @@ export default function pluginGithubBlock(): Plugin {
 			});
 
 			server.middlewares.use('/git.config.json', async (_, response) => {
-				sendJson(response, await parseGitConfig());
+				const gitFolder = await findGitFolder(rootDirectory);
+				sendJson(response, await parseGitConfig({ path: resolve(gitFolder, '.git', 'config') }));
 			});
 
 			server.middlewares.use('/blocks.config.json', async (_, response) => {
@@ -77,7 +115,7 @@ export default function pluginGithubBlock(): Plugin {
 					response.setHeader('Content-Type', 'text/html');
 					const transformedHtml = await server.transformIndexHtml(
 						request.url,
-						getEntrypointHtml(rootDirectory),
+						entrypointHtml,
 						request.originalUrl,
 					);
 					response.end(transformedHtml);

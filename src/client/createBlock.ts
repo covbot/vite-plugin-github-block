@@ -1,3 +1,5 @@
+import { FileBlockProps, FolderBlockProps } from '@githubnext/blocks';
+
 export type BlockType = 'file' | 'folder';
 
 export type BlockDefinition = {
@@ -7,7 +9,7 @@ export type BlockDefinition = {
 	description: string;
 	matches: string[];
 	example_path?: string;
-	render: (element: HTMLElement) => void;
+	render: (element: HTMLElement, props: FileBlockProps | FolderBlockProps) => void;
 };
 
 export const createBlock = (definition: BlockDefinition) => {
