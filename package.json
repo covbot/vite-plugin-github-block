@@ -7,7 +7,9 @@
 	"types": "./dist/index.d.ts",
 	"author": "",
 	"license": "MIT",
-	"keywords": [],
+	"keywords": [
+		"vite-plugin"
+	],
 	"publishConfig": {
 		"access": "public",
 		"directory": "prepared-package"
@@ -31,17 +33,17 @@
 	},
 	"scripts": {
 		"build": "rimraf ./dist && pnpm build:no-cleanup",
-		"build:no-cleanup": "pnpm build:ts && pnpm build:js",
 		"build:js": "tsup",
+		"build:no-cleanup": "pnpm build:ts && pnpm build:js",
 		"build:ts": "dts-bundle-generator --config ./.config/dts-config.cjs",
 		"dev": "pnpm build:no-cleanup && pnpm playground:dev",
 		"format": "pnpm format:manifest && pnpm format:code",
 		"format:code": "prettier --write **/*.{ts,tsx,cjs,js,jsx,json,md,yaml}",
 		"format:manifest": "syncpack format",
 		"playground:dev": "pnpm --filter playground dev",
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"postpublish": "rimraf ./prepared-package",
 		"prepublishOnly": "rimraf ./prepared-package && clean-publish",
-		"postpublish": "rimraf ./prepared-package"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
 		"@githubnext/blocks": "^2.3.5",
