@@ -60,6 +60,7 @@ importers:
     specifiers:
       '@covbot/vite-plugin-github-block': workspace:^
       '@githubnext/blocks': ^2.3.5
+      '@githubnext/blocks-runtime': ^1.0.3
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
       '@vitejs/plugin-react': ^3.1.0
@@ -69,6 +70,7 @@ importers:
       vite: ^4.1.0
     dependencies:
       '@githubnext/blocks': 2.3.5_ygqkwb4gg3aean7xjfdauovyqq
+      '@githubnext/blocks-runtime': 1.0.3_typescript@4.9.5
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
@@ -954,6 +956,28 @@ packages:
       - typescript
     dev: false
 
+  /@githubnext/blocks-runtime/1.0.3_typescript@4.9.5:
+    resolution: {integrity: sha512-7eE6yLqfJm2upeqr6gb1MWm2cB/5XVTJ8QTcSTVMoSc2Svx1Kqq/GvFs/sfwsJ00C0aR2mF6Icftgg9SQ4c48A==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@githubnext/blocks': 2.3.5_ygqkwb4gg3aean7xjfdauovyqq
+      '@primer/react': 35.19.0_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - react-is
+      - react-native
+      - sass
+      - styled-components
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - typescript
+    dev: false
+
   /@githubnext/blocks/2.3.5_xth4ryr3ditb2pflignr5ahlaq:
     resolution: {integrity: sha512-4ifvI9WUiVnEKvXvnLbJLU8HANZH6VGHmMmVWXvBbVOnKBbi4HUZdu0hVEJ/Stk2tsZ2zcnzgEkiZjuwTQbgfg==}
     engines: {node: '>=14.0.0'}
@@ -1624,7 +1648,7 @@ packages:
     peerDependencies:
       vite: ^3.0.0 || ^4.0.0
     dependencies:
-      vite: 4.1.2_@types+node@18.13.0
+      vite: 4.1.2
     dev: false
 
   /@vitejs/plugin-react/3.1.0_vite@4.1.2:

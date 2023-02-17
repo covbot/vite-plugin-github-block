@@ -28,14 +28,14 @@ const entrypointHtml = `
 </html>
 `.trim();
 
-const getJsEntrypoint = (rootDirectory: string) =>
+const getJsEntrypoint = (rootDirectory: string, previewUrl: string) =>
 	`
 import blockEntrypoint from '/@fs/${rootDirectory}/blocks.entry.ts';
 import { initEntrypoint } from '@covbot/vite-plugin-github-block/client';
 
 const rootElement = document.getElementById('root');
 
-initEntrypoint(blockEntrypoint, rootElement);
+initEntrypoint(blockEntrypoint, rootElement, ${JSON.stringify(previewUrl)});
 `.trim();
 
 const findGitFolder = async (rootDirectory: string) => {
@@ -53,7 +53,17 @@ const findGitFolder = async (rootDirectory: string) => {
 
 const cleanUrl = (url: string): string => url.replace(/#.*$/s, '').replace(/\?.*$/s, '');
 
-export default function pluginGithubBlock(): Plugin {
+const DEFAULT_PREVIEW_URL = 'https://blocks.githubnext.com/githubnext/blocks/blob/main/README.md';
+
+export type Options = {
+	/**
+	 * @default "https://blocks.githubnext.com/githubnext/blocks/blob/main/README.md"
+	 */
+	previewUrl?: string;
+};
+
+export default function pluginGithubBlock(options: Options = {}): Plugin {
+	const previewUrl = options.previewUrl ?? DEFAULT_PREVIEW_URL;
 	let rootDirectory: string;
 
 	const plugin: Plugin = {
@@ -65,7 +75,7 @@ export default function pluginGithubBlock(): Plugin {
 		},
 		load(id) {
 			if (id === '\0' + VIRTUAL_ENTRYPOINT) {
-				return getJsEntrypoint(rootDirectory);
+				return getJsEntrypoint(rootDirectory, previewUrl);
 			}
 		},
 		configResolved(config) {
