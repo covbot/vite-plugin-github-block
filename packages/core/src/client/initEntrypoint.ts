@@ -3,9 +3,9 @@ import { init } from '@githubnext/blocks-runtime';
 import { Block, FileBlockProps, FolderBlockProps } from '@githubnext/blocks';
 import { BlockDefinition } from './createBlock';
 
-export const initEntrypoint = (entrypoint: BlocksEntrypoint, rootElement: HTMLElement) => {
+export const initEntrypoint = (entrypoint: BlocksEntrypoint, rootElement: HTMLElement, previewUrl: string) => {
 	if (globalThis.window && globalThis.window === globalThis.window.top) {
-		globalThis.window.location.href = `https://blocks.githubnext.com/?devServer=${encodeURIComponent(
+		globalThis.window.location.href = `${previewUrl}?devServer=${encodeURIComponent(
 			globalThis.window.location.href,
 		)}`;
 

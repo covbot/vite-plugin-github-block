@@ -4,5 +4,10 @@ import githubBlock from '@covbot/vite-plugin-github-block';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [react(), githubBlock()],
+	plugins: [
+		react(),
+		githubBlock({
+			previewUrl: 'https://blocks.githubnext.com/covbot/vite-plugin-github-block/blob/main/README.md',
+		}),
+	],
 });
